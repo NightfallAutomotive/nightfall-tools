@@ -1,0 +1,8 @@
+# Files Cloudflare must not upload as part of the site
+node_modules
+.git
+.wrangler
+README.md
+wrangler.jsonc
+.assetsignore
+.gitignore

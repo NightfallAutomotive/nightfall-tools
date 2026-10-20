@@ -1,0 +1,7 @@
+{
+  // Cloudflare Workers static site: serve the page from the repo root.
+  // .assetsignore keeps the repo's own files out.
+  "name": "nightfall-tools",
+  "compatibility_date": "2026-10-19",
+  "assets": { "directory": "." }
+}
