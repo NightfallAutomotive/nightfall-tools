@@ -23,11 +23,9 @@
   --radius: 12px;
   --font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.7);
-  --glow-top: rgba(136, 192, 208, 0.10);
-  --glow-corner: rgba(163, 190, 140, 0.05);
   --header-line: rgba(136, 192, 208, 0.16);
-  --tool-top: rgba(53, 61, 76, 0.9);
-  --tool-bottom: rgba(46, 52, 64, 0.88);
+  --tool-top: rgba(53, 61, 76, 0.97);
+  --tool-bottom: rgba(46, 52, 64, 0.97);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -50,11 +48,9 @@
     --green: #3f6b32;
     --yellow: #8a6412;
     --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
-    --glow-top: rgba(94, 129, 172, 0.14);
-    --glow-corner: rgba(163, 190, 140, 0.12);
     --header-line: rgba(71, 101, 136, 0.2);
-    --tool-top: rgba(247, 248, 250, 0.92);
-    --tool-bottom: rgba(242, 244, 248, 0.9);
+    --tool-top: rgba(247, 248, 250, 0.97);
+    --tool-bottom: rgba(242, 244, 248, 0.97);
   }
 }
 
@@ -74,11 +70,9 @@
   --green: #3f6b32;
   --yellow: #8a6412;
   --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
-  --glow-top: rgba(94, 129, 172, 0.14);
-  --glow-corner: rgba(163, 190, 140, 0.12);
   --header-line: rgba(71, 101, 136, 0.2);
-  --tool-top: rgba(247, 248, 250, 0.92);
-  --tool-bottom: rgba(242, 244, 248, 0.9);
+  --tool-top: rgba(247, 248, 250, 0.97);
+  --tool-bottom: rgba(242, 244, 248, 0.97);
 }
 
 /* while switching, colours ease across instead of jumping (browsers without view transitions) */
@@ -106,10 +100,7 @@ body {
   margin: 0;
   min-height: 100vh;
   min-height: 100dvh;
-  background:
-    radial-gradient(ellipse at 50% 0%, var(--glow-top), transparent 50%),
-    radial-gradient(ellipse at 100% 100%, var(--glow-corner), transparent 45%),
-    var(--bg-deep);
+  background: var(--bg-deep);
   color: var(--text);
   font-family: var(--font);
   font-size: 15px;
@@ -349,8 +340,6 @@ h1 .accent {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: linear-gradient(180deg, var(--tool-top), var(--tool-bottom) 160px);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
   transition: border-color 300ms ease;
 }
 
@@ -454,7 +443,7 @@ h1 .accent {
 .tool-body {
   display: grid;
   grid-template-rows: 1fr;
-  transition: grid-template-rows 550ms var(--ease-out);
+  transition: grid-template-rows 450ms var(--ease-out);
 }
 
 .tool-inner {
@@ -477,9 +466,9 @@ h1 .accent {
   transition: none !important;
 }
 
-/* only one card is open at a time, so give the list room to scroll each title bar up to the reading line */
+/* room below the list so every title bar can scroll up to the reading line */
 .tools.is-live {
-  padding-bottom: 45vh;
+  padding-bottom: 50vh;
 }
 
 .tools.is-live .tool:not(.is-open) .tool-body {
@@ -696,12 +685,10 @@ h1 .accent {
   }
 }
 
-/* Reduce Transparency: solid cards, no blur over the moving background */
+/* Reduce Transparency: solid cards, and no moving background behind them */
 @media (prefers-reduced-transparency: reduce) {
   .tool {
     background: var(--panel);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
   }
 
   .matrix-rain {
