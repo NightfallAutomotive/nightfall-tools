@@ -28,7 +28,10 @@
 			<span class="brand-copy"><strong>NIGHTFALL</strong><span>AUTOMOTIVE</span></span>
 		</a>
 		<div class="header-links">
-			<span class="page-tag">NIGHTFALL <strong>TOOLS</strong></span>
+			<button type="button" class="theme" id="theme" aria-label="Switch to light mode">
+				<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+				<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="currentColor" /></svg>
+			</button>
 			<a class="back-link" href="https://www.nightfallautomotive.co.uk/"><span aria-hidden="true">←</span><span class="back-text">BACK TO SITE</span></a>
 		</div>
 	</header>
@@ -40,67 +43,142 @@
 			<p class="intro">Handy tools from Nightfall Automotive, free to use in your browser.</p>
 		</section>
 
-		<ul class="tools">
-			<li>
-				<a class="tool" href="https://www.remapdata.app/" style="--accent: var(--blue)">
-					<span class="tool-top">
-						<span class="tool-icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" /><path d="M12 18l4-6" /><path d="M3 21h18" /></svg>
-						</span>
-					</span>
+		<ul class="tools" id="tools">
+			<li class="tool" id="tool-remapdata" style="--accent: var(--blue)">
+				<button type="button" class="tool-head" aria-expanded="true" aria-controls="tool-remapdata-body">
+					<span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" /><path d="M12 18l4-6" /><path d="M3 21h18" /></svg></span>
 					<span class="tool-name">RemapData</span>
-					<span class="tool-text">Show stock and Stage 1, 2 and 3 power and torque figures for over 9,000 engines on your own website. One-off £5, then paste one block of code.</span>
-					<span class="tool-link">remapdata.app <span aria-hidden="true">→</span></span>
-				</a>
+					<span class="tool-host">remapdata.app</span>
+					<span class="tool-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg></span>
+				</button>
+				<div class="tool-body" id="tool-remapdata-body">
+					<div class="tool-inner">
+						<div class="tool-copy">
+							<p class="tool-text">Show stock and tuned power and torque figures on your own website. Pick your colours, paste one block of code and it's done.</p>
+							<ul class="tool-points">
+							<li>Over 10,000 engines, with more stages added all the time</li>
+							<li>A quote form that emails enquiries to you</li>
+							<li>£5 once, no subscription</li>
+							</ul>
+							<a class="tool-open" href="https://www.remapdata.app/" target="_blank" rel="noopener">Open RemapData <span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span></a>
+						</div>
+						<div class="tool-shots">
+							<img class="shot-desktop shot-dark" src="assets/shots/remapdata-desktop.webp" width="1280" height="800" loading="lazy" decoding="async" alt="RemapData on a computer screen" />
+							<img class="shot-desktop shot-light" src="assets/shots/remapdata-desktop-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="RemapData on a computer screen" />
+							<img class="shot-mobile shot-dark" src="assets/shots/remapdata-mobile.webp" width="585" height="1170" loading="lazy" decoding="async" alt="RemapData on a phone" />
+							<img class="shot-mobile shot-light" src="assets/shots/remapdata-mobile-light.webp" width="585" height="1170" loading="lazy" decoding="async" alt="RemapData on a phone" />
+						</div>
+					</div>
+				</div>
 			</li>
-			<li>
-				<a class="tool" href="https://bin.nightfalltools.co.uk/" style="--accent: var(--green)">
-					<span class="tool-top">
-						<span class="tool-icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 5-7 4 5" /><path d="M3 21h18" /></svg>
-						</span>
-						<span class="tool-tag">BETA</span>
-					</span>
+			<li class="tool" id="tool-bin" style="--accent: var(--green)">
+				<button type="button" class="tool-head" aria-expanded="true" aria-controls="tool-bin-body">
+					<span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 5-7 4 5" /><path d="M3 21h18" /></svg></span>
 					<span class="tool-name">BIN Analyser</span>
-					<span class="tool-text">See what a tune changed: torque and fuel limits, the speed limiter, switches and the fault codes that were turned off. Upload an original and a modified file, or just one.</span>
-					<span class="tool-link">bin.nightfalltools.co.uk <span aria-hidden="true">→</span></span>
-				</a>
+					<span class="tool-tag">BETA</span>
+					<span class="tool-host">bin.nightfalltools.co.uk</span>
+					<span class="tool-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg></span>
+				</button>
+				<div class="tool-body" id="tool-bin-body">
+					<div class="tool-inner">
+						<div class="tool-copy">
+							<p class="tool-text">See what a tune changed: torque and fuel limits, the speed limiter, switches and the fault codes that were turned off. Upload an original and a modified file, or just one.</p>
+							<ul class="tool-points">
+							<li>Compares an original and a modified file</li>
+							<li>Torque, fuel, speed limiter and switches</li>
+							<li>Lists the fault codes that were turned off</li>
+							</ul>
+							<a class="tool-open" href="https://bin.nightfalltools.co.uk/" target="_blank" rel="noopener">Open BIN Analyser <span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span></a>
+						</div>
+						<div class="tool-shots">
+							<img class="shot-desktop shot-dark" src="assets/shots/bin-desktop.webp" width="1280" height="800" loading="lazy" decoding="async" alt="BIN Analyser on a computer screen" />
+							<img class="shot-desktop shot-light" src="assets/shots/bin-desktop-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="BIN Analyser on a computer screen" />
+							<img class="shot-mobile shot-dark" src="assets/shots/bin-mobile.webp" width="585" height="1170" loading="lazy" decoding="async" alt="BIN Analyser on a phone" />
+							<img class="shot-mobile shot-light" src="assets/shots/bin-mobile-light.webp" width="585" height="1170" loading="lazy" decoding="async" alt="BIN Analyser on a phone" />
+						</div>
+					</div>
+				</div>
 			</li>
-			<li>
-				<a class="tool" href="https://qr.nightfalltools.co.uk/" style="--accent: var(--purple)">
-					<span class="tool-top">
-						<span class="tool-icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h1M20 14h1" /></svg>
-						</span>
-					</span>
+			<li class="tool" id="tool-qr" style="--accent: var(--purple)">
+				<button type="button" class="tool-head" aria-expanded="true" aria-controls="tool-qr-body">
+					<span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h1M20 14h1" /></svg></span>
 					<span class="tool-name">QR Code Generator</span>
-					<span class="tool-text">Make a QR code for any link or text, add your logo, pick Nord colours and download it as PNG or SVG.</span>
-					<span class="tool-link">qr.nightfalltools.co.uk <span aria-hidden="true">→</span></span>
-				</a>
+					<span class="tool-host">qr.nightfalltools.co.uk</span>
+					<span class="tool-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg></span>
+				</button>
+				<div class="tool-body" id="tool-qr-body">
+					<div class="tool-inner">
+						<div class="tool-copy">
+							<p class="tool-text">Make a QR code for any link or text, add your logo, pick Nord colours and download it as PNG or SVG.</p>
+							<ul class="tool-points">
+							<li>Any link or text, emoji included</li>
+							<li>Your logo in the centre</li>
+							<li>Download as PNG or SVG</li>
+							</ul>
+							<a class="tool-open" href="https://qr.nightfalltools.co.uk/" target="_blank" rel="noopener">Open QR Code Generator <span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span></a>
+						</div>
+						<div class="tool-shots">
+							<img class="shot-desktop shot-dark" src="assets/shots/qr-desktop.webp" width="1280" height="800" loading="lazy" decoding="async" alt="QR Code Generator on a computer screen" />
+							<img class="shot-desktop shot-light" src="assets/shots/qr-desktop-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="QR Code Generator on a computer screen" />
+							<img class="shot-mobile shot-dark" src="assets/shots/qr-mobile.webp" width="585" height="1170" loading="lazy" decoding="async" alt="QR Code Generator on a phone" />
+							<img class="shot-mobile shot-light" src="assets/shots/qr-mobile-light.webp" width="585" height="1170" loading="lazy" decoding="async" alt="QR Code Generator on a phone" />
+						</div>
+					</div>
+				</div>
 			</li>
-			<li>
-				<a class="tool" href="https://compress.nightfalltools.co.uk/" style="--accent: var(--cyan)">
-					<span class="tool-top">
-						<span class="tool-icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 9l-3-3M15 9l3-3M9 15l-3 3M15 15l3 3" /><rect x="9" y="9" width="6" height="6" rx="1" /></svg>
-						</span>
-					</span>
+			<li class="tool" id="tool-compress" style="--accent: var(--cyan)">
+				<button type="button" class="tool-head" aria-expanded="true" aria-controls="tool-compress-body">
+					<span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 9l-3-3M15 9l3-3M9 15l-3 3M15 15l3 3" /><rect x="9" y="9" width="6" height="6" rx="1" /></svg></span>
 					<span class="tool-name">Nightfall Compress</span>
-					<span class="tool-text">Shrink images right in your browser. Nothing is uploaded: every image stays on your device.</span>
-					<span class="tool-link">compress.nightfalltools.co.uk <span aria-hidden="true">→</span></span>
-				</a>
+					<span class="tool-host">compress.nightfalltools.co.uk</span>
+					<span class="tool-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg></span>
+				</button>
+				<div class="tool-body" id="tool-compress-body">
+					<div class="tool-inner">
+						<div class="tool-copy">
+							<p class="tool-text">Shrink images right in your browser. Nothing is uploaded: every image stays on your device.</p>
+							<ul class="tool-points">
+							<li>Resize and re-encode on your own device</li>
+							<li>JPEG, PNG and WebP</li>
+							<li>Nothing is uploaded</li>
+							</ul>
+							<a class="tool-open" href="https://compress.nightfalltools.co.uk/" target="_blank" rel="noopener">Open Nightfall Compress <span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span></a>
+						</div>
+						<div class="tool-shots">
+							<img class="shot-desktop shot-dark" src="assets/shots/compress-desktop.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Nightfall Compress on a computer screen" />
+							<img class="shot-desktop shot-light" src="assets/shots/compress-desktop-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Nightfall Compress on a computer screen" />
+							<img class="shot-mobile shot-dark" src="assets/shots/compress-mobile.webp" width="585" height="1170" loading="lazy" decoding="async" alt="Nightfall Compress on a phone" />
+							<img class="shot-mobile shot-light" src="assets/shots/compress-mobile-light.webp" width="585" height="1170" loading="lazy" decoding="async" alt="Nightfall Compress on a phone" />
+						</div>
+					</div>
+				</div>
 			</li>
-			<li>
-				<a class="tool" href="https://sumupconvert.nightfalltools.co.uk/" style="--accent: var(--yellow)">
-					<span class="tool-top">
-						<span class="tool-icon" aria-hidden="true">
-							<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /><path d="M7 15h4" /><path d="M15 15h2" /></svg>
-						</span>
-					</span>
+			<li class="tool" id="tool-sumup" style="--accent: var(--yellow)">
+				<button type="button" class="tool-head" aria-expanded="true" aria-controls="tool-sumup-body">
+					<span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /><path d="M7 15h4" /><path d="M15 15h2" /></svg></span>
 					<span class="tool-name">Statement Bridge</span>
-					<span class="tool-text">Turn a SumUp transactions export into a bank statement for FreeAgent, QuickBooks, Sage or Xero, with card fees and cash advance repayments on their own lines. Nothing is uploaded.</span>
-					<span class="tool-link">sumupconvert.nightfalltools.co.uk <span aria-hidden="true">→</span></span>
-				</a>
+					<span class="tool-host">sumupconvert.nightfalltools.co.uk</span>
+					<span class="tool-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg></span>
+				</button>
+				<div class="tool-body" id="tool-sumup-body">
+					<div class="tool-inner">
+						<div class="tool-copy">
+							<p class="tool-text">Turn a SumUp transactions export into a bank statement for FreeAgent, QuickBooks, Sage or Xero, with card fees and cash advance repayments on their own lines.</p>
+							<ul class="tool-points">
+							<li>FreeAgent, QuickBooks, Sage and Xero</li>
+							<li>Fees and held-back amounts on their own lines</li>
+							<li>Works offline: nothing is uploaded</li>
+							</ul>
+							<a class="tool-open" href="https://sumupconvert.nightfalltools.co.uk/" target="_blank" rel="noopener">Open Statement Bridge <span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span></a>
+						</div>
+						<div class="tool-shots">
+							<img class="shot-desktop shot-dark" src="assets/shots/sumup-desktop.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Statement Bridge on a computer screen" />
+							<img class="shot-desktop shot-light" src="assets/shots/sumup-desktop-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Statement Bridge on a computer screen" />
+							<img class="shot-mobile shot-dark" src="assets/shots/sumup-mobile.webp" width="585" height="1170" loading="lazy" decoding="async" alt="Statement Bridge on a phone" />
+							<img class="shot-mobile shot-light" src="assets/shots/sumup-mobile-light.webp" width="585" height="1170" loading="lazy" decoding="async" alt="Statement Bridge on a phone" />
+						</div>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</main>
@@ -112,6 +190,134 @@
 </div>
 
 <script>
+// Light/dark switch (as on RemapData and Statement Bridge): follows the device until clicked.
+// The choice lasts until the tab is closed; it isn't saved, because this page stores nothing.
+(function () {
+	var root = document.documentElement;
+	var sysLight = matchMedia("(prefers-color-scheme: light)");
+	var themeMeta = document.querySelector('meta[name="theme-color"]');
+	var button = document.getElementById("theme");
+	var mode = function () { return root.getAttribute("data-theme") || (sysLight.matches ? "light" : "dark"); };
+
+	function showMode() {
+		var m = mode();
+		root.setAttribute("data-mode", m);
+		button.setAttribute("aria-label", m === "light" ? "Switch to dark mode" : "Switch to light mode");
+		themeMeta.setAttribute("content", m === "light" ? "#e5e9f0" : "#20242d");
+	}
+
+	button.addEventListener("click", function () {
+		var next = mode() === "light" ? "dark" : "light";
+		var apply = function () { root.setAttribute("data-theme", next); showMode(); };
+		// with Reduce Motion the colours just ease across, with no spreading circle
+		if (matchMedia("(prefers-reduced-motion: reduce)").matches || !document.startViewTransition) {
+			root.classList.add("theming");
+			setTimeout(function () { root.classList.remove("theming"); }, 400);
+			apply();
+			return;
+		}
+		// the new mode spreads out in a circle from the button, to the far corner of the screen
+		var r = button.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+		var far = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+		document.startViewTransition(apply).ready.then(function () {
+			root.animate({ clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + far + "px at " + x + "px " + y + "px)"] },
+				{ duration: 900, easing: "cubic-bezier(.23, 1, .32, 1)", pseudoElement: "::view-transition-new(root)" });
+		}).catch(function () {});
+	});
+
+	if (sysLight.addEventListener) sysLight.addEventListener("change", showMode);
+	showMode();
+})();
+
+// Tool cards: the card whose title bar has passed the reading line (40% down the screen) opens and
+// the rest fold. While cards fold, the open card's title bar is held still on screen, so nothing jumps.
+// With Reduce Motion (or without script) every card simply stays open.
+(function () {
+	var list = document.getElementById("tools");
+	if (!list || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+	var cards = [].slice.call(list.querySelectorAll(".tool"));
+	var heads = cards.map(function (c) { return c.querySelector(".tool-head"); });
+	var gliding = false;
+	var bodies = cards.map(function (c) { return c.querySelector(".tool-body"); });
+	var current = -1, lockUntil = 0, holdFrame = 0;
+
+	document.documentElement.style.overflowAnchor = "none";  // we hold the scroll position ourselves
+
+	function open(i, glide) {
+		if (i === current) return;
+		var anchor = heads[i], until = performance.now() + 650, goal = innerHeight * 0.18;
+		gliding = !!glide;
+		var lastY = anchor.getBoundingClientRect().top + scrollY;  // its place on the page, not the screen
+		current = i;
+		cards.forEach(function (c, n) {
+			var on = n === i;
+			c.classList.toggle("is-open", on);
+			heads[n].setAttribute("aria-expanded", on ? "true" : "false");
+			bodies[n].inert = !on;
+		});
+		// While the others fold and unfold, scroll by however far the opened card's title bar is pushed,
+		// so it stays put on screen (your own scrolling isn't touched). After a click, or at the bottom
+		// of the page, glide it up towards the top of the screen instead.
+		cancelAnimationFrame(holdFrame);
+		(function hold() {
+			var top = anchor.getBoundingClientRect().top, y = top + scrollY;
+			var drift = glide ? (top - goal) * 0.16 : y - lastY;
+			lastY = y;
+			if (Math.abs(drift) > 0.5) scrollBy(0, drift);
+			if (performance.now() < until) holdFrame = requestAnimationFrame(hold);
+			else gliding = false;
+		})();
+	}
+
+	function pick() {
+		if (performance.now() < lockUntil) return;
+		var line = innerHeight * 0.4, at = 0;
+		heads.forEach(function (h, n) { if (h.getBoundingClientRect().top <= line) at = n; });
+		// the last card may never reach the line, so open it at the very bottom of the page
+		// and glide it up, which also stops it folding again as the page grows
+		if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) {
+			if (current !== cards.length - 1) {
+				lockUntil = performance.now() + 700;
+				open(cards.length - 1, true);
+			}
+			return;
+		}
+		open(at);
+	}
+
+	heads.forEach(function (h, n) {
+		h.addEventListener("click", function () {
+			if (n === current) return;
+			// don't let the glide's own scrolling pick another card on the way
+			lockUntil = performance.now() + 700;
+			open(n, true);
+		});
+	});
+
+	// a glide never holds on against you: the moment you scroll yourself, it lets go
+	function letGo() {
+		if (!gliding) return;
+		gliding = false;
+		cancelAnimationFrame(holdFrame);
+		lockUntil = 0;
+	}
+	["wheel", "touchstart", "keydown"].forEach(function (t) { addEventListener(t, letGo, { passive: true }); });
+
+	var ticking = false;
+	addEventListener("scroll", function () {
+		if (ticking) return;
+		ticking = true;
+		requestAnimationFrame(function () { ticking = false; pick(); });
+	}, { passive: true });
+	addEventListener("resize", pick);
+
+	// fold straight away on load, without playing the animation
+	list.classList.add("is-live", "no-anim");
+	pick();
+	requestAnimationFrame(function () { requestAnimationFrame(function () { list.classList.remove("no-anim"); }); });
+})();
+
 // Decoration only; the page works without it
 new MatrixRain(document.getElementById("matrix-rain"));
 

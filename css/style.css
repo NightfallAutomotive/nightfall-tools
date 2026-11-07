@@ -21,8 +21,76 @@
   --green: #a3be8c;
   --yellow: #ebcb8b;
   --radius: 12px;
-  --font: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.7);
+  --glow-top: rgba(136, 192, 208, 0.10);
+  --glow-corner: rgba(163, 190, 140, 0.05);
+  --header-line: rgba(136, 192, 208, 0.16);
+  --tool-top: rgba(53, 61, 76, 0.9);
+  --tool-bottom: rgba(46, 52, 64, 0.88);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Light mode (Nord Snow Storm): the device's setting, unless the sun/moon switch chose (data-theme).
+   Accents are deepened so text in them passes 4.5:1 on the pale cards. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #e5e9f0;
+    --bg-deep: #e5e9f0;
+    --panel: #f2f4f8;
+    --panel-light: #f7f8fa;
+    --border: #cbd2dd;
+    --text: #2e3440;
+    --muted: #4c566a;
+    --dim: #5e6779;
+    --cyan: #2f6f80;
+    --blue: #476588;
+    --purple: #7b4f74;
+    --green: #3f6b32;
+    --yellow: #8a6412;
+    --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
+    --glow-top: rgba(94, 129, 172, 0.14);
+    --glow-corner: rgba(163, 190, 140, 0.12);
+    --header-line: rgba(71, 101, 136, 0.2);
+    --tool-top: rgba(247, 248, 250, 0.92);
+    --tool-bottom: rgba(242, 244, 248, 0.9);
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #e5e9f0;
+  --bg-deep: #e5e9f0;
+  --panel: #f2f4f8;
+  --panel-light: #f7f8fa;
+  --border: #cbd2dd;
+  --text: #2e3440;
+  --muted: #4c566a;
+  --dim: #5e6779;
+  --cyan: #2f6f80;
+  --blue: #476588;
+  --purple: #7b4f74;
+  --green: #3f6b32;
+  --yellow: #8a6412;
+  --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
+  --glow-top: rgba(94, 129, 172, 0.14);
+  --glow-corner: rgba(163, 190, 140, 0.12);
+  --header-line: rgba(71, 101, 136, 0.2);
+  --tool-top: rgba(247, 248, 250, 0.92);
+  --tool-bottom: rgba(242, 244, 248, 0.9);
+}
+
+/* while switching, colours ease across instead of jumping (browsers without view transitions) */
+html.theming,
+html.theming * {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 * {
@@ -39,8 +107,8 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(136, 192, 208, 0.10), transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(163, 190, 140, 0.05), transparent 45%),
+    radial-gradient(ellipse at 50% 0%, var(--glow-top), transparent 50%),
+    radial-gradient(ellipse at 100% 100%, var(--glow-corner), transparent 45%),
     var(--bg-deep);
   color: var(--text);
   font-family: var(--font);
@@ -70,6 +138,22 @@ a:hover {
   mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
 }
 
+/* the rain's pale glyphs vanish on a light page, so darken them there */
+[data-mode="light"] .matrix-rain {
+  opacity: 0.16;
+  filter: brightness(0.5) saturate(1.4);
+}
+
+/* text for screen readers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .page {
   position: relative;
   z-index: 1;
@@ -95,7 +179,7 @@ main {
   gap: 20px;
   padding: 0 0 24px;
   margin-bottom: 28px;
-  border-bottom: 1px solid rgba(136, 192, 208, 0.16);
+  border-bottom: 1px solid var(--header-line);
 }
 
 .brand {
@@ -140,18 +224,6 @@ main {
   gap: 22px;
 }
 
-.page-tag {
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-}
-
-.page-tag strong {
-  margin-left: 8px;
-  color: var(--purple);
-  font-size: 20px;
-}
-
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -163,20 +235,66 @@ main {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  transition: border-color 120ms ease, color 120ms ease;
+  transition: border-color 120ms ease, color 120ms ease, transform 100ms var(--ease-out);
 }
 
-.back-link:hover {
-  border-color: var(--cyan);
-  color: var(--text);
+.back-link:active {
+  transform: scale(0.96);
+}
+
+/* the sun/moon switch (as on RemapData and Statement Bridge): shows the current mode, turning from one to the other */
+.theme {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: transform 100ms var(--ease-out), color 150ms ease, border-color 150ms ease;
+}
+
+.theme svg {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.35s var(--ease-out), opacity 0.2s ease;
+}
+
+.theme .sun,
+[data-mode="light"] .theme .moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+[data-mode="light"] .theme .sun {
+  opacity: 1;
+  transform: none;
+}
+
+.theme:active {
+  transform: scale(0.92);
+}
+
+.theme:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
 
 .back-link span {
   transition: transform 120ms ease;
 }
 
-.back-link:hover span {
-  transform: translateX(-3px);
+/* press feedback is instant, on touch-down; no 300ms double-tap wait on these */
+.back-link,
+.theme,
+.tool-head,
+.tool-open {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ---------- Hero ---------- */
@@ -212,12 +330,14 @@ h1 .accent {
   font-size: 15px;
 }
 
-/* ---------- Tool cards ---------- */
+/* ---------- Tool cards ----------
+   One column of cards. Without script (or with Reduce Motion) every card is open;
+   with script, the card at the reading line opens and the rest fold to their title bar. */
 
 .tools {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -225,20 +345,13 @@ h1 .accent {
 
 .tool {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: 100%;
-  padding: 24px;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(53, 61, 76, 0.9), rgba(46, 52, 64, 0.88) 120px);
-  box-shadow: var(--shadow);
-  color: var(--text);
+  background: linear-gradient(180deg, var(--tool-top), var(--tool-bottom) 160px);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  transition: border-color 300ms ease;
 }
 
 /* A line in the tool's colour along the top */
@@ -251,36 +364,48 @@ h1 .accent {
   opacity: 0.85;
 }
 
-.tool:hover,
-.tool:focus-visible {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow), 0 0 28px -8px var(--accent);
-  color: var(--text);
+.tool.is-open {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
 }
 
-.tool:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.tool-top {
+.tool-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 23px 22px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tool-head:active .tool-icon {
+  transform: scale(0.94);
+}
+
+.tool-head:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+  border-radius: var(--radius);
 }
 
 .tool-icon {
   display: grid;
+  flex: none;
   place-items: center;
   width: 44px;
   height: 44px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--bg);
+  transition: transform 100ms var(--ease-out);
 }
 
-.tool-icon svg {
+.tool-icon svg,
+.tool-chevron svg {
   width: 22px;
   height: 22px;
   fill: none;
@@ -288,6 +413,12 @@ h1 .accent {
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.tool-name {
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 
 .tool-tag {
@@ -300,34 +431,192 @@ h1 .accent {
   letter-spacing: 0.25em;
 }
 
-.tool-name {
-  margin-top: 6px;
-  font-size: 21px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-}
-
-.tool-text {
-  flex: 1;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.tool-link {
-  margin-top: 6px;
+.tool-host {
+  margin-left: auto;
   color: var(--accent);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
 }
 
-.tool-link span {
+.tool-chevron {
+  display: grid;
+  flex: none;
+  place-items: center;
+  transition: transform 400ms var(--ease-out);
+}
+
+.tool.is-open .tool-chevron {
+  transform: rotate(180deg);
+}
+
+/* Folding: the body's single grid row eases between 0fr and 1fr */
+.tool-body {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 550ms var(--ease-out);
+}
+
+.tool-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 32px;
+  align-items: center;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 22px;
+  transition: opacity 400ms ease, transform 550ms var(--ease-out);
+}
+
+.tool-inner > * {
+  margin-bottom: 26px;
+}
+
+.tools.no-anim *,
+.tools.no-anim *::before {
+  transition: none !important;
+}
+
+/* only one card is open at a time, so give the list room to scroll each title bar up to the reading line */
+.tools.is-live {
+  padding-bottom: 45vh;
+}
+
+.tools.is-live .tool:not(.is-open) .tool-body {
+  grid-template-rows: 0fr;
+}
+
+.tools.is-live .tool:not(.is-open) .tool-inner {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.tool-text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.tool-points {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 22px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.tool-points li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.tool-points li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.tool-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 800;
+  transition: background-color 150ms ease, transform 100ms var(--ease-out);
+}
+
+.tool-open:active {
+  transform: scale(0.97);
+}
+
+.tool-open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.tool-open span {
   display: inline-block;
   transition: transform 160ms ease;
 }
 
-.tool:hover .tool-link span {
-  transform: translateX(4px);
+@media (hover: hover) and (pointer: fine) {
+  .back-link:hover,
+  .theme:hover {
+    border-color: var(--cyan);
+    color: var(--text);
+  }
+
+  .back-link:hover span {
+    transform: translateX(-3px);
+  }
+
+  .tool-head:hover .tool-chevron {
+    transform: translateY(2px);
+  }
+
+  .tool.is-open .tool-head:hover .tool-chevron {
+    transform: rotate(180deg) translateY(2px);
+  }
+
+  .tool-open:hover {
+    background: color-mix(in srgb, var(--accent) 26%, transparent);
+    color: var(--text);
+  }
+
+  .tool-open:hover span[aria-hidden] {
+    transform: translateX(4px);
+  }
+}
+
+/* A desktop screenshot with the phone one overlapping its corner */
+.tool-shots {
+  position: relative;
+  padding: 10px 9% 28px 0;
+}
+
+.tool-shots img {
+  display: block;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  box-shadow: 0 24px 40px -22px rgba(0, 0, 0, 0.6);
+}
+
+.shot-desktop {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Tools with a light mode get light screenshots in light mode; the shot not in use never loads */
+.shot-light,
+[data-mode="light"] .shot-dark:has(+ .shot-light) {
+  display: none !important;
+}
+
+[data-mode="light"] .shot-light {
+  display: block !important;
+}
+
+.shot-mobile {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 24%;
+  height: auto;
+  border-radius: 14px;
+  border-width: 3px !important;
+  border-color: #0f1115 !important;
 }
 
 /* ---------- Footer ---------- */
@@ -346,7 +635,6 @@ h1 .accent {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 640px) {
-  .page-tag,
   .back-link .back-text {
     display: none;
   }
@@ -360,8 +648,32 @@ h1 .accent {
     line-height: 1;
   }
 
-  .tools {
+  .tool-head {
+    gap: 12px;
+    padding: 19px 16px;
+  }
+
+  .tool-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .tool-name {
+    font-size: 18px;
+  }
+
+  .tool-host {
+    display: none;
+  }
+
+  .tool-chevron {
+    margin-left: auto;
+  }
+
+  .tool-inner {
     grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 0 16px;
   }
 
   .page-footer {
@@ -372,8 +684,39 @@ h1 .accent {
 
 @media (prefers-reduced-motion: reduce) {
   .tool,
-  .tool-link span,
-  .back-link span {
+  .tool-body,
+  .tool-inner,
+  .tool-chevron,
+  .tool-open,
+  .tool-open span,
+  .back-link span,
+  .theme,
+  .theme svg {
     transition: none;
+  }
+}
+
+/* Reduce Transparency: solid cards, no blur over the moving background */
+@media (prefers-reduced-transparency: reduce) {
+  .tool {
+    background: var(--panel);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .matrix-rain {
+    display: none;
+  }
+}
+
+/* Increase Contrast: firmer edges and full-strength secondary text */
+@media (prefers-contrast: more) {
+  :root {
+    --border: var(--muted);
+    --dim: var(--muted);
+  }
+
+  .tool {
+    background: var(--panel);
   }
 }

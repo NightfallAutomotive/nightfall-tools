@@ -14,4 +14,6 @@ It is a static page (HTML, CSS and a little JavaScript) with no build step,
 deployed as a Cloudflare Workers static site from `wrangler.jsonc`. Files
 listed in `.assetsignore` are not uploaded.
 
-To add a tool, add a card to the `tools` list in `index.html`.
+To add a tool, copy one of the cards in the `tools` list in `index.html` and give it two
+screenshots in `assets/shots/`: `<name>-desktop.webp` (1280×800) and `<name>-mobile.webp`
+(390×780 at 1.5×).
