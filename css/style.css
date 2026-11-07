@@ -220,25 +220,54 @@ main {
 .header-links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 12px;
 }
 
-.back-link {
+/* button to the main Nightfall Automotive site; same height, border and press as the sun/moon switch */
+.site-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
+  height: 36px;
+  padding: 0 12px 0 14px;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 10px;
   color: var(--muted);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.14em;
-  transition: border-color 120ms ease, color 120ms ease, transform 100ms var(--ease-out);
+  white-space: nowrap;
+  text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 100ms var(--ease-out), color 150ms ease, border-color 150ms ease;
 }
 
-.back-link:active {
+.site-button svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  transition: transform 150ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-button:hover {
+    border-color: var(--green);
+    color: var(--text);
+  }
+
+  .site-button:hover svg {
+    transform: translate(1px, -1px);
+  }
+}
+
+.site-button:active {
   transform: scale(0.96);
+}
+
+.site-button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
 
 /* the sun/moon switch (as on RemapData and Statement Bridge): shows the current mode, turning from one to the other */
@@ -283,12 +312,7 @@ main {
   outline-offset: 3px;
 }
 
-.back-link span {
-  transition: transform 120ms ease;
-}
-
 /* press feedback is instant, on touch-down; no 300ms double-tap wait on these */
-.back-link,
 .theme,
 .tool-head,
 .tool-open {
@@ -536,14 +560,9 @@ h1 {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .back-link:hover,
   .theme:hover {
     border-color: var(--cyan);
     color: var(--text);
-  }
-
-  .back-link:hover span {
-    transform: translateX(-3px);
   }
 
   .tool-head:hover .tool-chevron {
@@ -628,17 +647,20 @@ h1 {
     font-size: 11px;
   }
 
-  .back-link .back-text {
-    display: none;
+  .header-links {
+    gap: 10px;
   }
 
-  .back-link {
-    padding: 7px 11px;
+  /* NIGHTFALL over AUTOMOTIVE, so the button fits beside the logo on a phone */
+  .site-button {
+    padding: 0 10px;
+    gap: 6px;
+    font-size: 9px;
+    line-height: 1.2;
   }
 
-  .back-link span[aria-hidden] {
-    font-size: 16px;
-    line-height: 1;
+  .site-name span {
+    display: block;
   }
 
   .tool-head {
@@ -682,7 +704,8 @@ h1 {
   .tool-chevron,
   .tool-open,
   .tool-open span,
-  .back-link span,
+  .site-button,
+  .site-button svg,
   .theme,
   .theme svg {
     transition: none;
