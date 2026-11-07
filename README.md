@@ -1,6 +1,6 @@
 # Nightfall Tools
 
-The home page for Nightfall Automotive's free tools, at
+The home page for Nightfall Automotive's tools, at
 **https://www.nightfalltools.co.uk**.
 
 | Tool | Address | Repository |

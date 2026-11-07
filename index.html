@@ -16,16 +16,16 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="stylesheet" href="css/style.css" />
-<script src="js/decrypted-text.js"></script>
 <script src="js/matrix-rain.js"></script>
 </head>
 <body>
 <canvas id="matrix-rain" class="matrix-rain" aria-hidden="true"></canvas>
 <div class="page">
 	<header class="page-header">
-		<a class="brand" href="https://www.nightfallautomotive.co.uk/" aria-label="Nightfall Automotive home">
-			<img class="brand-logo" src="assets/nf-logo.png" alt="" width="50" height="36" />
-			<span class="brand-copy"><strong>NIGHTFALL</strong><span>AUTOMOTIVE</span></span>
+		<a class="brand" href="https://www.nightfallautomotive.co.uk/" aria-label="Nightfall Tools, by Nightfall Automotive (home)">
+			<span class="brand-dragon" aria-hidden="true"></span>
+			<span class="brand-name" aria-hidden="true">NIGHTFALL<b>TOOLS</b></span>
+			<i class="brand-rule" aria-hidden="true"></i>
 		</a>
 		<div class="header-links">
 			<button type="button" class="theme" id="theme" aria-label="Switch to light mode">
@@ -38,9 +38,8 @@
 
 	<main>
 		<section class="hero" aria-labelledby="page-title">
-			<p class="eyebrow">FREE TOOLS</p>
-			<h1 id="page-title">Nightfall <span class="accent">tools.</span></h1>
-			<p class="intro">Handy tools from Nightfall Automotive, free to use in your browser.</p>
+			<h1 id="page-title" class="sr-only">Nightfall Tools</h1>
+			<p class="intro">Handy tools from Nightfall Automotive, all in your browser.</p>
 		</section>
 
 		<ul class="tools" id="tools">
@@ -153,7 +152,7 @@
 					</div>
 				</div>
 			</li>
-			<li class="tool" id="tool-sumup" style="--accent: var(--yellow)">
+			<li class="tool" id="tool-sumup" style="--accent: var(--red)">
 				<button type="button" class="tool-head" aria-expanded="true" aria-controls="tool-sumup-body">
 					<span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /><path d="M7 15h4" /><path d="M15 15h2" /></svg></span>
 					<span class="tool-name">Statement Bridge</span>
@@ -291,19 +290,6 @@
 
 // Decoration only; the page works without it
 new MatrixRain(document.getElementById("matrix-rain"));
-
-new DecryptedText(document.getElementById("page-title"), {
-	animateOn : "inViewHover",
-	effect : "scramble",
-	sequential : true,
-	revealDirection : "start",
-	speed : 60,
-	maxIterations : 10,
-	hoverRadius : 100,
-	scrambleColor : "#a3be8c",
-	className : "revealed",
-	encryptedClassName : "encrypted"
-});
 </script>
 </body>
 </html>

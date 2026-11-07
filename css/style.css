@@ -19,7 +19,7 @@
   --blue: #81a1c1;
   --purple: #b48ead;
   --green: #a3be8c;
-  --yellow: #ebcb8b;
+  --red: #bf616a;
   --radius: 12px;
   --font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.7);
@@ -45,8 +45,8 @@
     --cyan: #2f6f80;
     --blue: #476588;
     --purple: #7b4f74;
-    --green: #3f6b32;
-    --yellow: #8a6412;
+    --green: #2e4a72;
+    --red: #a3404a;
     --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
     --header-line: rgba(71, 101, 136, 0.2);
     --tool-top: rgba(247, 248, 250, 0.97);
@@ -67,8 +67,8 @@
   --cyan: #2f6f80;
   --blue: #476588;
   --purple: #7b4f74;
-  --green: #3f6b32;
-  --yellow: #8a6412;
+  --green: #2e4a72;
+  --red: #a3404a;
   --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
   --header-line: rgba(71, 101, 136, 0.2);
   --tool-top: rgba(247, 248, 250, 0.97);
@@ -175,8 +175,9 @@ main {
 
 .brand {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 7px;
   color: var(--text);
 }
 
@@ -184,29 +185,36 @@ main {
   color: var(--text);
 }
 
-.brand-logo {
+/* the dragon is drawn from its SVG as a mask, so it takes the accent colour in either mode */
+.brand-dragon {
   display: block;
-  width: auto;
-  height: 36px;
+  width: 88px;
+  aspect-ratio: 54 / 19;
+  background: var(--green);
+  -webkit-mask: url("../assets/logo/dragon.svg") center / contain no-repeat;
+  mask: url("../assets/logo/dragon.svg") center / contain no-repeat;
 }
 
-.brand-copy {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-  letter-spacing: 0.15em;
-}
-
-.brand-copy strong {
-  font-size: 15px;
+.brand-name {
+  margin-right: -0.32em;
+  font-size: 13px;
   font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.32em;
 }
 
-.brand-copy > span {
-  margin-top: 5px;
+.brand-name b {
+  margin-left: 0.5em;
   color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-weight: 400;
+}
+
+.brand-rule {
+  display: block;
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--green);
 }
 
 .header-links {
@@ -294,14 +302,6 @@ main {
   padding: 28px 0 36px;
 }
 
-.eyebrow {
-  margin: 0 0 10px;
-  color: var(--cyan);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-}
-
 h1 {
   margin: 0;
   font-size: clamp(36px, 6vw, 64px);
@@ -310,13 +310,9 @@ h1 {
   letter-spacing: -0.045em;
 }
 
-h1 .accent {
-  color: var(--green);
-}
-
 .intro {
   max-width: 560px;
-  margin: 16px 0 0;
+  margin: 0;
   color: var(--muted);
   font-size: 15px;
 }
@@ -624,6 +620,14 @@ h1 .accent {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 640px) {
+  .brand-dragon {
+    width: 74px;
+  }
+
+  .brand-name {
+    font-size: 11px;
+  }
+
   .back-link .back-text {
     display: none;
   }
