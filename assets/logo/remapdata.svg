@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- RemapData logo: a wizard holding a speedo, on a Nord tile. Used in the API page header and as its tab icon. -->
+  <rect width="64" height="64" rx="14" fill="#2E3440"/>
+  <!-- robe -->
+  <path d="M19 34 C14 43 11 51 8 59 L42 59 C41 51 39 43 35 34 Z" fill="#ECEFF4"/>
+  <path d="M31 35 C35 43 37 51 38 59 L42 59 C41 51 39 43 35 34 Z" fill="#88C0D0"/>
+  <!-- arm out, palm up under the speedo -->
+  <path d="M32 40 C38 40 43 41 47 43.2 L46 47 C41.5 45.5 37 45.5 32 46.5 Z" fill="#ECEFF4"/>
+  <path d="M32 44.8 C37 44 41.5 44.2 46.2 46.2 L46 47 C41.5 45.5 37 45.5 32 46.5 Z" fill="#88C0D0"/>
+  <path d="M44.5 43.5 C47 41.6 52 41.4 54.5 43 C53 45.5 48 46.4 45.5 46.2 Z" fill="#ECEFF4"/>
+  <!-- beard -->
+  <path d="M19 36 Q26.5 34 34 36 Q34 46 27 53 Q24 49 21 47 Q19 42 19 36 Z" fill="#ECEFF4"/>
+  <path d="M29 36 Q32 36.4 34 36 Q34 46 27 53 Q30 46 29 36 Z" fill="#88C0D0"/>
+  <!-- face in shadow, with the moustache -->
+  <path d="M19.5 32.5 Q26.5 35 33.5 32.5 L33.5 37 Q26.5 39 19.5 37 Z" fill="#2E3440"/>
+  <path d="M20 38 Q23.5 36.2 26.5 38 Q29.5 36.2 33 38 Q29.5 39.6 26.5 39 Q23.5 39.6 20 38 Z" fill="#ECEFF4"/>
+  <!-- hat: brim, then the cone leaning back with its tip folded forward -->
+  <path d="M12 32 Q26.5 26.5 40 31.5 Q27 36 12 32 Z" fill="#ECEFF4"/>
+  <path d="M17 31 C19 23 21 15 24 8 C25.5 4.5 29.5 3.5 33.5 6.5 L38 9.5 C34 9 31.5 10 30.5 12.5 C32 19 34 25 36 30.5 Q26.5 28 17 31 Z" fill="#ECEFF4"/>
+  <path d="M29.5 13 C31 19.5 33 25 36 30.5 Q33.5 29.8 31.5 29.5 C30 24 29 18 29.5 13 Z" fill="#88C0D0"/>
+  <!-- the speedo -->
+  <circle cx="50" cy="32" r="8.6" fill="#2E3440" stroke="#88C0D0" stroke-width="2.2"/>
+  <path d="M44.8 35 A6 6 0 1 1 55.2 35" fill="none" stroke="#ECEFF4" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="1.2 2.1"/>
+  <path d="M50 32.5 L54.2 27.8" stroke="#88C0D0" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="50" cy="32.5" r="1.7" fill="#ECEFF4"/>
+</svg>

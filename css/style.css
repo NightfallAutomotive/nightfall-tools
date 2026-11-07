@@ -413,7 +413,56 @@ h1 {
   transition: transform 100ms var(--ease-out);
 }
 
-.tool-icon svg,
+/* each card shows its tool's own logo, drawn in the card's colour (RemapData's is a full-colour tile) */
+.tool-icon.is-tile {
+  overflow: hidden;
+  border: 0;
+  background: none;
+}
+
+.tool-icon.is-tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* RemapData's dark tile needs the same thin edge as the other icons to show on a dark card */
+.tool-icon.is-tile:has(img) {
+  outline: 1px solid var(--border);
+  outline-offset: -1px;
+}
+
+.tool-logo {
+  display: block;
+  height: 66%;
+  background: var(--accent);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+}
+
+.tool-logo.is-skull {
+  --logo: url("../assets/logo/wire-skull.svg");
+  aspect-ratio: 1364 / 1911;
+}
+
+.tool-logo.is-reticle {
+  --logo: url("../assets/logo/reticle.svg");
+  aspect-ratio: 1;
+  height: 60%;
+}
+
+.tool-logo.is-ape {
+  --logo: url("../assets/logo/ape-chip.svg");
+  aspect-ratio: 1;
+  height: 100%;
+}
+
+.tool-logo.is-mask {
+  --logo: url("../assets/logo/mask-half.svg");
+  aspect-ratio: 73 / 156;
+  height: 72%;
+}
+
 .tool-chevron svg {
   width: 22px;
   height: 22px;
