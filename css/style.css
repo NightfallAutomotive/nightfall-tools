@@ -20,6 +20,7 @@
   --purple: #b48ead;
   --green: #a3be8c;
   --red: #bf616a;
+  --orange: #d08770;
   --radius: 12px;
   --font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.7);
@@ -47,6 +48,7 @@
     --purple: #7b4f74;
     --green: #2e4a72;
     --red: #a3404a;
+    --orange: #9a4b28;
     --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
     --header-line: rgba(71, 101, 136, 0.2);
     --tool-top: rgba(247, 248, 250, 0.97);
@@ -69,6 +71,7 @@
   --purple: #7b4f74;
   --green: #2e4a72;
   --red: #a3404a;
+  --orange: #9a4b28;
   --shadow: 0 24px 48px -28px rgba(46, 52, 64, 0.35);
   --header-line: rgba(71, 101, 136, 0.2);
   --tool-top: rgba(247, 248, 250, 0.97);
@@ -455,6 +458,27 @@ h1 {
   --logo: url("../assets/logo/ape-chip.svg");
   aspect-ratio: 1;
   height: 100%;
+}
+
+.tool-logo.is-inkwell {
+  --logo: url("../assets/logo/inkwell-skull.svg");
+  aspect-ratio: 1;
+  height: 92%;
+}
+
+/* small print under a download button (Inkwell) */
+.tool-note {
+  margin: 12px 0 0;
+  max-width: 46ch;
+  color: var(--dim);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tool-note a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .tool-logo.is-mask {
